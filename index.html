@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumpul SKP BPS Sumut</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+        .main-card {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        .month-card {
+            background-color: #f9fafb;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .month-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-card space-y-6">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800">
+            Pengumpulan bukti dukung SPIP PM Tahap 2: SKP Penilaian Bulan Januari–Juni 2025
+        </h1>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-700">
+            Halo Rekan-rekan BPS Provinsi Sumut!
+        </h2>
+
+        <div class="text-base sm:text-lg text-gray-600 leading-relaxed mt-4">
+            <p class="mb-4">
+                Silakan klik tombol "Unggah" di setiap bulan untuk menuju folder unggahan di Google Drive.
+            </p>
+        </div>
+
+        <!-- Monthly Upload Cards Grid -->
+        <div id="monthCards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            <!-- Cards will be injected here by JavaScript -->
+        </div>
+
+    </div>
+
+    <script>
+        const MONTHS = [
+            { name: 'Januari', key: 'januari', link: 'https://drive.google.com/drive/folders/18paJqi4ZC0q6zPkmdPSeEslYJ06n-YLg?usp=drive_link' },
+            { name: 'Februari', key: 'februari', link: 'https://drive.google.com/drive/folders/17f0NxxO7bbN5z7Al0dVvR9_FILco2z4x?usp=drive_link' },
+            { name: 'Maret', key: 'maret', link: 'https://drive.google.com/drive/folders/1kgV9hKNCzoDhtN9t8x6fKbnxpKu4Wvqk?usp=drive_link' },
+            { name: 'April', key: 'april', link: 'https://drive.google.com/drive/folders/1yw5NvfW4dH39gFHhcTz3Ahp53B_LZr7W?usp=drive_link' },
+            { name: 'Mei', key: 'mei', link: 'https://drive.google.com/drive/folders/1fu79GDf2OoKTtiTD_pvispaDTkGzAgCk?usp=drive_link' },
+            { name: 'Juni', key: 'juni', link: 'https://drive.google.com/drive/folders/1QscmNUpanVmLKUiPAqkxaE1XAsTl7vuG?usp=drive_link' }
+        ];
+
+        const monthCardsContainer = document.getElementById('monthCards');
+        
+        function renderMonthCards() {
+            monthCardsContainer.innerHTML = '';
+            
+            MONTHS.forEach(month => {
+                const card = document.createElement('div');
+                card.className = 'month-card';
+
+                const buttonHtml = `<a href="${month.link}" target="_blank" class="mt-4 w-full py-2 px-4 rounded-full font-semibold transition-all duration-200 bg-blue-600 hover:bg-blue-700 text-white">Unggah Sekarang</a>`;
+
+                card.innerHTML = `
+                    <h3 class="text-xl font-bold text-gray-800">${month.name}</h3>
+                    ${buttonHtml}
+                `;
+                monthCardsContainer.appendChild(card);
+            });
+        }
+
+        window.onload = function() {
+            renderMonthCards();
+        };
+
+    </script>
+</body>
+</html>
